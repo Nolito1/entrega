@@ -1,0 +1,13 @@
+{% extends "blog/header_footer.html" %}
+
+{% load bootstrap5 %}
+
+{% block cuerpo %}
+    <a href="{% url 'blog_list' %}">Volver a Lista</a>
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crear Cuenta">
+    </form>
+{% endblock %}

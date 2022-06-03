@@ -1,0 +1,11 @@
+{% extends "blog/header_footer.html" %}
+
+{% load bootstrap5 %}
+
+{% block cuerpo %}
+    <form method="post">{% csrf_token %}
+        <p>¿Está Seguro que quiere borrar "{{ object }}"?</p>
+        {{ form }}
+        <input type="submit" value="Confirmar">
+    </form>
+{% endblock %}

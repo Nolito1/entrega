@@ -1,0 +1,29 @@
+{% extends "blog/header_footer.html" %}
+
+{% load bootstrap5 %}
+
+{% block cuerpo %}
+  {% if user.is_authenticated %}
+    <a href="{% url 'blog_logout' %}">Salir</a>
+    <a href="{% url 'blog_create' %}">Nuevo Blog</a>
+  {% else %}
+    <a href="{% url 'blog_login' %}">Entrar</a>
+    <a href="{% url 'blog_signup' %}">Crear Cuenta</a>
+  {% endif %}
+  
+
+  {% if object_list %}
+      {% for blog in object_list %}
+      <li>
+        
+          <a href="{% url 'blog_detail' blog.id %}">{{blog.titulo}}</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'blog_delete' blog.id %}">Borrar</a>
+            <a href="{% url 'blog_update' blog.id %}">Actualizar</a>
+          {% endif %}
+      </li>
+      {% endfor %}
+  {% else %}
+    <h1> No hay blogs</h1>
+  {% endif %}
+{% endblock %}
